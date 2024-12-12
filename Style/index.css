@@ -1,83 +1,66 @@
-/* Reset some default styles */
-* {
-    margin: 0;
+*{
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+body{
+    color: white;
+    background-color: black;
+}
+table,th,td{
+    border: solid 2px #fff;
+    padding: 30px 60px;
+    border-radius: 15px;
 }
 
-h1 {
-    font-size: 3em;
+h1 , h2{
+    text-align: center;
     margin-bottom: 20px;
 }
 
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 15px;
-    border: 1px solid #fff;
-}
-
-th {
-    background-color: #333;
-}
-
-td {
-    text-align: center;
-}
-
-button {
-    padding: 8px 15px;
-    margin: 5px;
-    border: none;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ccc;
-}
-
-.Add-box {
-    background-color: #333;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-}
-
-.Add-box form {
-    display: flex;
-    justify-content: center;
+.table-container{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 5%;
 }
 
-.Add-box input[type="text"] {
+.Add-box{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 10%;
+    border: solid 2px #fff;
+    padding: 30px 60px;
+    border-radius: 15px;
+}
+
+button{
+    padding: 20px;
+    margin-left: 15px;
+    border: solid white 3px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+input{
+    padding: 10px 50px;
+    border: solid white 3px;
+    border-radius: 10px;
+}
+
+.task{
+    font-size: 20px;
+    margin-right: 25px;
+}
+
+.Add-box button{
     padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: none;
-    width: 250px;
-}
-
-.Add-box button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.Add-box button:hover {
-    background-color: #45a049;
+    border: solid white 3px;
+    background-color: white;
+    border-radius: 10px;
 }

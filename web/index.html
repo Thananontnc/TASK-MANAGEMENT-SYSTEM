@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main-style"> <!-- Update with correct path -->
-    <title>Task Management System</title>
+    <link rel="stylesheet" href="/main-style" , type="text/css">
+    <title>Task-Management-System</title>
 </head>
+
 <body>
-    <h1>Task Management System</h1>
+    <div class="table-container">
+        <h1>Task Management System</h1>
 
-    <!-- Task List -->
-    <table>
-        <thead>
-            <tr>
-                <th>Task</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{range .}} <!-- Make sure data passed here has TaskName and Status -->
-            <tr>
-                <td>{{.TaskName}}</td>
-                <td>{{.Status}}</td>
-                <td>
-                    <form action="/mark-completed/{{.ID}}" method="POST">
-                        <button type="submit">Mark as Completed</button>
-                    </form>
-                    <form action="/delete/{{.ID}}" method="POST">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {{end}}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Complete Go tutorial</td>
+                    <td>
+                        <button>Mark as Completed</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Write blog post</td>
+                    <td>
+                        <button>Mark as Completed</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <!-- More tasks will be added here dynamically -->
+            </tbody>
+        </table>
 
-    <!-- Add New Task Form -->
-    <div class="Add-box">
-        <h2>Add a New Task</h2>
-        <form action="/tasks" method="POST">
-            <label for="task">Task Name:</label>
-            <input type="text" id="task" name="task" required>
-            <button type="submit">Add Task</button>
-        </form>
+        <!-- Form to Add New Task -->
+        <div class="Add-box">
+            <h2>Add a New Task</h2>
+            <form action="/tasks" method="POST">
+                <label for="task" class="task">Task Name:</label>
+                <input type="text" id="task" name="task" required>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>

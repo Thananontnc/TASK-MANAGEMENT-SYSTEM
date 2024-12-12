@@ -10,6 +10,12 @@ import (
 
 var DB *sql.DB
 
+type Task struct {
+	ID       int
+	TaskName string
+	Status   string
+}
+
 // Connect TO Database
 func ConnectToDB(username, password, hostname, dbname string) error {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true", username, password, hostname, dbname)
@@ -87,11 +93,4 @@ func GetTasks() ([]Task, error) {
 		tasks = append(tasks, task)
 	}
 	return tasks, nil
-}
-
-// Task represents a task in the task management system
-type Task struct {
-	ID       int
-	TaskName string
-	Status   string
 }

@@ -12,14 +12,13 @@ import (
 
 func main() {
 	// Run DataBase
-	sqlhandle.ConnectToDB("root", "Plai1412", "localhost", "user_db")
+	sqlhandle.ConnectToDB("root", "root", "localhost", "user_db")
 
 	// Handle HTML FILE
 	http.HandleFunc("/register", webhandle.RegisterHandle)
 	http.HandleFunc("/login", webhandle.LoginHandle)
-	http.HandleFunc("/tasks", webhandle.AddTaskHandle)
-	http.HandleFunc("/main-page", webhandle.IndexHandle)
-	http.HandleFunc("/task", webhandle.TaskHandler)
+	http.HandleFunc("/tasks", webhandle.IndexHandle)
+
 	// Handle CSS FILE
 	http.HandleFunc("/register-style", csshandle.RegisterHandleCSS)
 	http.HandleFunc("/login-style", csshandle.LoginHandleCss)
