@@ -62,10 +62,36 @@ func CheckPwd(username, email string) (string, error) {
 
 // Insert task to database
 func InsertTask(taskName string) error {
-	_, err := DB.Exec("INSERT INTO tasks (task) VALUES (?)", taskName)
-	return err
+	_, err := DB.Exec("INSERT INTO tasks (task_name,status) VALUES (?,?)", taskName, "Pending")
+	if err != nil {
+		log.Printf("Error inserting task: %v", err)
+		return err
+	}
+	return nil
 }
 
 // GET TASKS FUNCTION
+func GetTasks() ([]Task, error) {
+	rows, err := DB.Query("SELECT id, task_name, status FROM tasks")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
 
-//  ADD TASK FUNCTION
+	var tasks []Task
+	for rows.Next() {
+		var task Task
+		if err := rows.Scan(&task.ID, &task.TaskName, &task.Status); err != nil {
+			return nil, err
+		}
+		tasks = append(tasks, task)
+	}
+	return tasks, nil
+}
+
+// Task represents a task in the task management system
+type Task struct {
+	ID       int
+	TaskName string
+	Status   string
+}

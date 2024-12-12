@@ -17,8 +17,9 @@ func main() {
 	// Handle HTML FILE
 	http.HandleFunc("/register", webhandle.RegisterHandle)
 	http.HandleFunc("/login", webhandle.LoginHandle)
-	http.HandleFunc("/tasks", webhandle.IndexHandle)
-
+	http.HandleFunc("/tasks", webhandle.AddTaskHandle)
+	http.HandleFunc("/main-page", webhandle.IndexHandle)
+	http.HandleFunc("/task", webhandle.TaskHandler)
 	// Handle CSS FILE
 	http.HandleFunc("/register-style", csshandle.RegisterHandleCSS)
 	http.HandleFunc("/login-style", csshandle.LoginHandleCss)
