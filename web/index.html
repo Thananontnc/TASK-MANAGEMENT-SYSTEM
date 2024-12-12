@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/main-style" type="text/css">
+    <link rel="stylesheet" href="/tasks-style" type="text/css">
     <title>Task Management System</title>
 </head>
 
 <body>
-    <div class="table-container">
+    <div class="container">
         <h1>Task Management System</h1>
 
         <table>
@@ -26,13 +26,11 @@
                     <td>{{.TaskName}}</td>
                     <td>{{.Status}}</td>
                     <td>
-                        <button>Mark as Completed</button>
-                        <button>Delete</button>
+                        <!-- Mark as Completed Button -->
+                        <a href="/complete/{{.ID}}"><button>Mark as Completed</button></a>
+                        <!-- Delete Button -->
+                        <a href="/delete/{{.ID}}"><button>Delete</button></a>
                     </td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td colspan="3">No tasks found.</td>
                 </tr>
                 {{end}}
             </tbody>
@@ -41,8 +39,8 @@
         <!-- Form to Add New Task -->
         <div class="Add-box">
             <h2>Add a New Task</h2>
-            <form action="/" method="POST">
-                <label for="task" class="task">Task Name:</label>
+            <form action="/tasks" method="POST">
+                <label for="task">Task Name:</label>
                 <input type="text" id="task" name="task" required>
                 <button type="submit">Add Task</button>
             </form>

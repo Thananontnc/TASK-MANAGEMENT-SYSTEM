@@ -94,3 +94,23 @@ func GetTasks() ([]Task, error) {
 	}
 	return tasks, nil
 }
+
+// Delete Task from Database
+func DeleteTask(id string) error {
+	_, err := DB.Exec("DELETE FROM tasks WHERE id = ?", id)
+	if err != nil {
+		log.Printf("Error deleting task: %v", err)
+		return err
+	}
+	return nil
+}
+
+// Mark Task as Completed
+func CompleteTask(id string) error {
+	_, err := DB.Exec("UPDATE tasks SET status = 'Completed' WHERE id = ?", id)
+	if err != nil {
+		log.Printf("Error updating task status: %v", err)
+		return err
+	}
+	return nil
+}

@@ -7,5 +7,6 @@ CREATE TABLE users (
 
 CREATE TABLE tasks(
     ID int AUTO_INCREMENT PRIMARY KEY,
-    tasks TEXT NOT NULL
+    tasks TEXT NOT NULL,
+	status VARCHAR(50) DEFAULT 'Pending'
 );
