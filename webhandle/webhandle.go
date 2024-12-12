@@ -2,6 +2,7 @@ package webhandle
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -32,7 +33,9 @@ func RegisterHandle(w http.ResponseWriter, r *http.Request) {
 		}
 		fmt.Printf("Username: %s , Email: %s , Password: %s , Phone: %s", username, email, password, phone)
 		fmt.Println("\nInsert Sucessfully ! ")
+
 	}
+
 }
 
 // Login
@@ -62,17 +65,37 @@ func LoginHandle(w http.ResponseWriter, r *http.Request) {
 // Index TASK MANAGEMENT SYSTEM
 func IndexHandle(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		filepath := filepath.Join("web", "index.html")
-		http.ServeFile(w, r, filepath)
-	} else if r.Method == http.MethodPost {
-		r.ParseForm()
+		// Get tasks from database
+		tasks, err := sqlhandle.GetTasks()
+		if err != nil {
+			http.Error(w, "Unable to load tasks", http.StatusInternalServerError)
+			return
+		}
 
+		// Parse the HTML template
+		tmpl, err := template.ParseFiles("web/index.html")
+		if err != nil {
+			http.Error(w, "Unable to load template", http.StatusInternalServerError)
+			return
+		}
+
+		// Execute the template with the tasks data
+		err = tmpl.Execute(w, tasks)
+		if err != nil {
+			http.Error(w, "Unable to render template", http.StatusInternalServerError)
+			return
+		}
+	} else if r.Method == http.MethodPost {
+		// Handle task insertion
+		r.ParseForm()
 		taskName := r.FormValue("task")
 
 		err := sqlhandle.InsertTask(taskName)
 		if err != nil {
-			fmt.Println("Fail to insert task")
+			http.Error(w, "Failed to insert task", http.StatusInternalServerError)
+			return
 		}
-		fmt.Println("Add task successfully")
+		// Redirect back to the task list page after adding
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 }

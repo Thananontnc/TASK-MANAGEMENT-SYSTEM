@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/main-style" , type="text/css">
-    <title>Task-Management-System</title>
+    <link rel="stylesheet" href="/main-style" type="text/css">
+    <title>Task Management System</title>
 </head>
 
 <body>
@@ -16,32 +16,32 @@
             <thead>
                 <tr>
                     <th>Task</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+                {{range .}}
                 <tr>
-                    <td>Complete Go tutorial</td>
+                    <td>{{.TaskName}}</td>
+                    <td>{{.Status}}</td>
                     <td>
                         <button>Mark as Completed</button>
                         <button>Delete</button>
                     </td>
                 </tr>
+                {{else}}
                 <tr>
-                    <td>Write blog post</td>
-                    <td>
-                        <button>Mark as Completed</button>
-                        <button>Delete</button>
-                    </td>
+                    <td colspan="3">No tasks found.</td>
                 </tr>
-                <!-- More tasks will be added here dynamically -->
+                {{end}}
             </tbody>
         </table>
 
         <!-- Form to Add New Task -->
         <div class="Add-box">
             <h2>Add a New Task</h2>
-            <form action="/tasks" method="POST">
+            <form action="/" method="POST">
                 <label for="task" class="task">Task Name:</label>
                 <input type="text" id="task" name="task" required>
                 <button type="submit">Add Task</button>

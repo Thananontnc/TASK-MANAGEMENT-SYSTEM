@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// Run DataBase
-	sqlhandle.ConnectToDB("root", "root", "localhost", "user_db")
+	sqlhandle.ConnectToDB("root", "Plai1412", "localhost", "user_db")
 
 	// Handle HTML FILE
 	http.HandleFunc("/register", webhandle.RegisterHandle)
